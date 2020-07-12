@@ -1,15 +1,33 @@
 {% extends "encyclopedia/layout.html" %}
 
 {% block title %}
-    Encyclopedia
+{% if title %}
+{{title}}
+{% else %}
+Encyclopedia
+{% endif %}
+{% endblock %}
+
+{%block query %}
+{% if query %}
+{{query}}
+{% endif %}
 {% endblock %}
 
 {% block body %}
-    <h1>All Pages</h1>
+    <h1>
+    {% if heading %}
+    {{heading}}
+    {% else %}
+    All Wikis
+    {% endif %}
+    </h1>
 
     <ul>
         {% for entry in entries %}
-            <li><a href="wiki/{{entry}}">{{ entry }}</a></li>
+            <li><a href="{% url 'show_wiki' entry %}">{{ entry }}</a></li>
+        {% empty %}
+            <h2>Nothing found :(</h2>
         {% endfor %}
     </ul>
 
