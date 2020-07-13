@@ -5,5 +5,7 @@
 {% endblock %}
 
 {%block body %}
+    <h1>Wiki - <i>{{title}}</i></h1>
+    <a href="{% url 'edit' title %}">Edit Content</a>
     {{entry|safe}}
 {% endblock %}
